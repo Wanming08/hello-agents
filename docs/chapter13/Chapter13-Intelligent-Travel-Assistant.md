@@ -389,17 +389,17 @@ Now let's see how these data models are used in actual Web applications. In Fast
 
 ```python
 from fastapi import FastAPI
-from app.models.schemas import TripPlanRequest, TripPlan
+from app.models.schemas import TripRequest, TripPlan
 
 app = FastAPI()
 
 @app.post("/api/trip/plan", response_model=TripPlan)
-async def create_trip_plan(request: TripPlanRequest) -> TripPlan:
+async def create_trip_plan(request: TripRequest) -> TripPlan:
     """
     Create travel plan
 
     FastAPI automatically:
-    1. Validates request data (TripPlanRequest)
+    1. Validates request data (TripRequest)
     2. Validates response data (TripPlan)
     3. Generates OpenAPI documentation
     """
@@ -407,7 +407,7 @@ async def create_trip_plan(request: TripPlanRequest) -> TripPlan:
     return trip_plan
 ```
 
-When a user sends a POST request to `/api/trip/plan`, FastAPI will automatically convert the JSON data into a `TripPlanRequest` object. If the data format is incorrect (such as missing required fields or type mismatch), FastAPI will automatically return a 400 error and tell the user where the error is.
+When a user sends a POST request to `/api/trip/plan`, FastAPI will automatically convert the JSON data into a `TripRequest` object. If the data format is incorrect (such as missing required fields or type mismatch), FastAPI will automatically return a 400 error and tell the user where the error is.
 
 On the front-end, we also need to define corresponding TypeScript types. Although TypeScript and Python are different languages, the data structures are the same:
 
